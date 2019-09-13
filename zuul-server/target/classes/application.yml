@@ -1,16 +1,31 @@
 server:
-  port: 9090
-
+   port: 9090
+management:
+   endpoints:
+      web:
+         exposure:
+           include: hystrix.stream
 eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://127.0.0.1:8761/eureka/
-
-zuul:
-  #Service will be mapped under the /api URI
-  prefix: /api
-#  Uncomment to disable auto-registering all services read from Eureka
-#  ignoredServices: '*'
+   client:
+      service-url:
+         defaultZone: http://127.0.0.1:8761/eureka/
+   instance:
+      preferIpAddress: true
 spring:
-  application:
-    name: zuul-api-gateway-server
+   application:
+      name: zuul-api-gateway-server
+   cloud:
+      gateway:
+         discovery:
+            locator:
+               enabled: true
+               lowerCaseServiceId: true
+         routes:
+         - id: accountservice
+           uri: lb://account-service
+           predicates:
+           - Path=/accountservice/**
+         - id: nodeservice
+           uri: lb://node-service
+           predicates:
+           - Path=/nodeservice/**

@@ -1,0 +1,33 @@
+server:
+   port: 9090
+management:
+   endpoints:
+      web:
+         exposure:
+           include: hystrix.stream
+eureka:
+   client:
+      service-url:
+         defaultZone: http://127.0.0.1:8761/eureka/
+   instance:
+      preferIpAddress: true
+spring:
+   application:
+      name: zuul-api-gateway-server
+   cloud:
+      config:
+         uri: http://localhost:9999
+      gateway:
+         discovery:
+            locator:
+               enabled: true
+               lowerCaseServiceId: true
+         routes:
+         - id: account-service
+           uri: lb://account-service
+           predicates:
+           - Path=/accountservice/**
+         - id: node-service
+           uri: lb://node-service
+           predicates:
+           - Path=/nodeservice/**
