@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.equinix.ioa.wb.node.model.User;
 
 @FeignClient("account-service")
-@RequestMapping("/account")
+@RequestMapping("/accountservice/account")
 public interface AccountClientService {
 
 	@GetMapping("/login")

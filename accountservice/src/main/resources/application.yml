@@ -1,5 +1,7 @@
 server:
   port: 9092
+  servlet:
+    context-path: /accountservice
 
 eureka:
   instance:
