@@ -1,0 +1,31 @@
+server:
+  port: 9091
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
+    enabled: false
+
+    
+ribbon:
+  eureka:
+    enabled: false
+    
+account-service:
+  ribbon:
+    eureka:
+      enabled: false
+    listOfServers: localhost:9092
+
+spring:
+  application:
+    name: node-service
+    
