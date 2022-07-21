@@ -7,6 +7,8 @@ eureka:
   instance:
     leaseRenewalIntervalInSeconds: 1
     leaseExpirationDurationInSeconds: 2
+    preferIpAddress: false
+    nonSecurePort: 80
   client:
     serviceUrl:
       defaultZone: http://127.0.0.1:8761/eureka/
@@ -15,19 +17,27 @@ eureka:
     lease:
       duration: 5
     enabled: true
-
     
 ribbon:
   eureka:
-    enabled: false
-    
-account-service:
-  ribbon:
-    eureka:
-      enabled: true
-    listOfServers: localhost:9092
+    enabled: true
 
 spring:
   application:
     name: node-service
     
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 1000
+  threadpool:
+    default:
+      maxQueueSize: 10
+      queueSizeRejectionThreshold: 10
+
+feign:
+  hystrix:
+    enabled: true

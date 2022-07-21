@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.equinix.ioa.wb.node.model.User;
 
 @Component("accountClientService")
-@FeignClient(contextId = "accountClientService", value = "account-service")
+@FeignClient(contextId = "accountClientService", name = "account-service")
 @RequestMapping("/accountservice/account")
 public interface AccountClientService {
 

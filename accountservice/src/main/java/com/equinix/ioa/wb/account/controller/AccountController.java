@@ -19,9 +19,11 @@ public class AccountController {
 	 * This is a demo API
 	 * 
 	 * @return
+	 * @throws InterruptedException 
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET, produces = "application/json")
-	public User login() {
+	public User login() throws InterruptedException {
+	    Thread.sleep(3000);
 		System.out.println("Se ejecuto desde account-service");
 		return user;
 	}

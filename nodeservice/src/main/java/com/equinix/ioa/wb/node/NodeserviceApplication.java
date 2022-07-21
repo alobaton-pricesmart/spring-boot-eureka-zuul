@@ -9,7 +9,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableEurekaClient
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableFeignClients("com.equinix.ioa.wb.node.integration")
+@EnableFeignClients
 public class NodeserviceApplication {
 
 	public static void main(String[] args) {
